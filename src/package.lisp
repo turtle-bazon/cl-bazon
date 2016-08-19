@@ -9,6 +9,7 @@
    #:->>
    #:fn
    #:macro-wrap
+   #:compose
+   #:flip
    #:partial
-   #:partialm
    ))

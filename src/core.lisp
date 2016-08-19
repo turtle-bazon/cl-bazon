@@ -27,14 +27,36 @@
 (defmacro fn (&rest forms)
   `(lambda ,@forms))
 
-(defmacro macro-wrap (macro-name)
+(defmacro macro-wrap (macro-symbol)
   `(lambda (&rest args)
-     (eval (cons (quote ,macro-name) args))))
+     (eval (cons ,macro-symbol args))))
+
+(defun compose (function &rest more-functions)
+  (reduce (lambda (f1 f2)
+            (lambda (&rest args)
+              (multiple-value-call f1 (apply f2 args))))
+          more-functions
+          :initial-value function))
+
+(define-compiler-macro compose (function &rest more-functions)
+  (reduce (lambda (f1 f2)
+            `(lambda (&rest args)
+               (multiple-value-call ,f1 (apply ,f2 args))))
+          more-functions
+          :initial-value function))
+
+(defun flip (function)
+  (lambda (&rest args)
+    (apply function (reverse args))))
+
+(define-compiler-macro flip (function)
+  `(lambda (&rest args)
+     (apply ,function (reverse args))))
 
 (defun partial (function &rest args)
   (lambda (&rest more-args)
     (apply function (append args more-args))))
 
-(defmacro partialm (function &rest args)
+(define-compiler-macro partial (function &rest args)
   `(lambda (&rest more-args)
      (apply ,function (append (list ,@args) more-args))))
