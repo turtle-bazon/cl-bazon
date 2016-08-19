@@ -7,4 +7,8 @@
   (:export
    #:->
    #:->>
+   #:fn
+   #:macro-wrap
+   #:partial
+   #:partialm
    ))

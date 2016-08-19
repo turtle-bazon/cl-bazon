@@ -23,3 +23,18 @@
         `(-> ,(cons (first first-form) (cons initial-form (rest first-form)))
              ,@rest-forms))
       initial-form))
+
+(defmacro fn (&rest forms)
+  `(lambda ,@forms))
+
+(defmacro macro-wrap (macro-name)
+  `(lambda (&rest args)
+     (eval (cons (quote ,macro-name) args))))
+
+(defun partial (function &rest args)
+  (lambda (&rest more-args)
+    (apply function (append args more-args))))
+
+(defmacro partialm (function &rest args)
+  `(lambda (&rest more-args)
+     (apply ,function (append (list ,@args) more-args))))
