@@ -7,7 +7,6 @@
   (:export
    #:->
    #:->>
-   #:fn
    #:macro-wrap
    #:compose
    #:flip

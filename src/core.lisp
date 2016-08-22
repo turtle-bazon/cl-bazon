@@ -40,9 +40,6 @@
                ,@(rest forms))))
       initial-form))
 
-(defmacro fn (&rest forms)
-  `(lambda ,@forms))
-
 (defmacro macro-wrap (macro-symbol)
   `(lambda (&rest args)
      (eval (cons ,macro-symbol args))))
