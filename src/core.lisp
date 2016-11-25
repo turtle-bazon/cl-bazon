@@ -73,3 +73,6 @@
 (define-compiler-macro partial (function &rest args)
   `(lambda (&rest more-args)
      (apply ,function (append (list ,@args) more-args))))
+
+(defmacro assoc-ref (item alist &key key (test #'eql))
+  `(rest (assoc ,item ,alist :key ,key :test ,test)))
