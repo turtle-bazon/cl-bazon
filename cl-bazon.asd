@@ -10,4 +10,9 @@
   :components ((:module "src"
                         :components
                         ((:file "package")
-                         (:file "core" :depends-on ("package"))))))
+                         (:file "core" :depends-on ("package")))))
+  :in-order-to ((test-op (test-op cl-bazon-tests)))
+  :perform (test-op :after (op c)
+                    (funcall
+                     (intern (symbol-name '#:run-cl-bazon-tests)
+                             :cl-bazon-tests))))
