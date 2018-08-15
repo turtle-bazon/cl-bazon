@@ -19,6 +19,5 @@
         `(split-sequence:split-sequence-if
           (lambda (element)
             (member element ,delims ,@key-part ,@test-part))
-          seq)
-        `(split-sequence:split-sequence
-          ,delims ,seq ,@key-part ,@test-part))))
+          ,seq)
+        `(split-sequence:split-sequence ,delims ,seq ,@key-part ,@test-part))))
