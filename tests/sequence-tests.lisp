@@ -10,3 +10,11 @@
 
 (test seq/split-simple-delimiter-list
   (is (equal '("This" "is" "a" "" "es" "") (seq/split "This is a test" '(#\Space #\t)))))
+
+(test seq/split-simple-one-delimiter-empty-subseqs
+  (is (equal '("This" "is" "a" "test")
+             (seq/split "This is  a  test" #\Space :remove-empty-subseqs t))))
+
+(test seq/split-simple-delimiter-list-empty-subseqs
+  (is (equal '("This" "is" "a" "es")
+             (seq/split "This is a test" '(#\Space #\t) :remove-empty-subseqs t))))
