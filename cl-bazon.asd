@@ -6,7 +6,8 @@
   :licence "Lessor Lisp General Public License"
   :version "0.0.1.0"
   :description "CL Bazon"
-  :depends-on (split-sequence)
+  :depends-on (split-sequence
+               uiop)
   :components ((:module "src"
                         :components
                         ((:file "package")
@@ -18,7 +19,9 @@
                                 :depends-on ("package"))                         
                          (:file "sequence"
                                 :depends-on ("package"
-                                             "list")))))
+                                             "list"))
+                         (:file "shell"
+                                :depends-on ("package")))))
   :in-order-to ((test-op (test-op cl-bazon-tests)))
   :perform (test-op :after (op c)
                     (funcall
