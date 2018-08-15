@@ -26,4 +26,5 @@
    ;shell
    #:run/string
    #:run/lines
+   #:exit
    ))
