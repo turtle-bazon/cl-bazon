@@ -9,5 +9,11 @@
   :depends-on (:cl-bazon :fiveam)
   :components ((:module "tests"
                         :components ((:file "package")
-                                     (:file "core-tests"
+                                     (:file "function-tests"
+                                            :depends-on ("package"))
+                                     (:file "list-tests"
+                                            :depends-on ("package"))
+                                     (:file "alist-tests"
+                                            :depends-on ("package"))
+                                     (:file "sequence-tests"
                                             :depends-on ("package"))))))

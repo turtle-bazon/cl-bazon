@@ -5,11 +5,21 @@
   (:use
    #:cl)
   (:export
+   
+   ;function
    #:->
    #:->>
-   #:assoc-ref
    #:macro-wrap
    #:compose
    #:flip
    #:partial
+
+   ;list
+   #:list?
+
+   ;alist
+   #:assoc-ref
+
+   ;sequence
+   #:seq/split
    ))

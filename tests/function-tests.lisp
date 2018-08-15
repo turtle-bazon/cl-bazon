@@ -2,8 +2,8 @@
 
 (in-package #:cl-bazon-tests)
 
-(def-suite cl-bazon-tests.core)
-(in-suite cl-bazon-tests.core)
+(def-suite cl-bazon-tests.function)
+(in-suite cl-bazon-tests.function)
 
 (test simple->
   (is (= 1 (-> 1 +))))
