@@ -24,6 +24,6 @@
    #:seq/split
 
    ;shell
-   run/string
-   run/lines
+   #:run/string
+   #:run/lines
    ))
