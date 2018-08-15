@@ -8,7 +8,11 @@
       (uiop:wait-process process))))
 
 (defun run/lines (program &rest arguments)
-  (seq/split (apply #'run/string (cons program arguments)) '(#\Return #\NewLine)))
+  (with-input-from-string (is (apply #'run/string (cons program arguments)))
+    (loop
+       for line = (read-line is nil nil)
+       while line
+       collect line)))
 
 (defun exit (&optional code)
   #+allegro (excl:exit code)
