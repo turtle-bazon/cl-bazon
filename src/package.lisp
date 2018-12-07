@@ -22,6 +22,8 @@
 
    ;plist
    #:pget
+   #:pget-first
+   #:pget-rest
 
    ;sequence
    #:seq/split

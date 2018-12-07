@@ -15,5 +15,7 @@
                                             :depends-on ("package"))
                                      (:file "alist-tests"
                                             :depends-on ("package"))
+                                     (:file "plist-tests"
+                                            :depends-on ("package"))
                                      (:file "sequence-tests"
                                             :depends-on ("package"))))))
