@@ -20,6 +20,9 @@
    ;alist
    #:assoc-ref
 
+   ;plist
+   #:pget
+
    ;sequence
    #:seq/split
 

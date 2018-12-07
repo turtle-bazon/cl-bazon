@@ -17,6 +17,8 @@
                                 :depends-on ("package"))
                          (:file "alist"
                                 :depends-on ("package"))                         
+                         (:file "plist"
+                                :depends-on ("package"))
                          (:file "sequence"
                                 :depends-on ("package"
                                              "list"))
