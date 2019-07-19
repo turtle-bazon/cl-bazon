@@ -27,6 +27,8 @@
 
    ;sequence
    #:seq/split
+   #:seq/starts-with-p
+   #:seq/ends-with-p
 
    ;shell
    #:run/string

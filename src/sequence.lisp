@@ -24,3 +24,13 @@
         `(split-sequence:split-sequence
           ,delims ,seq :remove-empty-subseqs ,remove-empty-subseqs
           ,@key-part ,@test-part))))
+
+(defun seq/starts-with-p (seq1 seq2)
+  "Determines whether `seq1` starts witch `seq2`"
+  (let ((p (search seq2 seq1)))
+    (and p (= 0 p))))
+
+(defun seq/ends-with-p (seq1 seq2)
+  "Determines wheter `seq1` ends with `seq2`"
+  (let ((p (mismatch seq2 seq1 :from-end t)))
+    (or (not p) (= 0 p))))
