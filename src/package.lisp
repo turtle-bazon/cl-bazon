@@ -6,7 +6,7 @@
    #:cl)
   (:export
    
-   ;function
+   ;;function
    #:->
    #:->>
    #:macro-wrap
@@ -14,23 +14,26 @@
    #:flip
    #:partial
 
-   ;list
+   ;;list
    #:list?
 
-   ;alist
+   ;;alist
    #:assoc-ref
 
-   ;plist
+   ;;plist
    #:pget
    #:pget-first
    #:pget-rest
 
-   ;sequence
+   ;;sequence
    #:seq/split
    #:seq/starts-with-p
    #:seq/ends-with-p
 
-   ;shell
+   ;;string
+   #:string/replace-all
+
+   ;;shell
    #:run/string
    #:run/lines
    #:exit
