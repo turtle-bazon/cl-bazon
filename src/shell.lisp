@@ -2,17 +2,27 @@
 
 (in-package #:ru.bazon.cl-bazon)
 
-(defun run/string (program &rest arguments)
-  (with-output-to-string (string-stream)
-    (let ((process (uiop:launch-program (cons program arguments) :output string-stream)))
-      (uiop:wait-process process))))
+(defun run/string (command &key input)
+  (let ((output-string (make-array '(0) :element-type 'character
+                                        :fill-pointer 0
+                                        :adjustable t)))
+    (with-output-to-string (string-stream output-string)
+      (let* ((process (uiop:launch-program command
+                                           :input input
+                                           :output string-stream
+                                           :error-output string-stream))
+             (exit-code (uiop:wait-process process)))
+        (values output-string exit-code)))))
 
-(defun run/lines (program &rest arguments)
-  (with-input-from-string (is (apply #'run/string (cons program arguments)))
-    (loop
-       for line = (read-line is nil nil)
-       while line
-       collect line)))
+(defun run/lines (command &key input)
+  (multiple-value-bind (output-string exit-code)
+      (run/string command :input input)
+    (let ((output-lines (with-input-from-string (is output-string)
+                          (loop
+                            for line = (read-line is nil nil)
+                            while line
+                            collect line))))
+      (values output-lines exit-code))))
 
 (defun exit (&optional code)
   #+allegro (excl:exit code)
