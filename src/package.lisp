@@ -34,7 +34,6 @@
    #:string/replace-all
 
    ;;shell
-   #:run/string
-   #:run/lines
+   #:exec/sync
    #:exit
    ))

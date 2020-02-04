@@ -4,7 +4,7 @@
   :name "cl-bazon"
   :author "Azamat S. Kalimoulline <turtle@bazon.ru>"
   :licence "Lessor Lisp General Public License"
-  :version "0.0.1.3"
+  :version "0.0.1.4"
   :description "CL Bazon"
   :depends-on (split-sequence
                uiop)
