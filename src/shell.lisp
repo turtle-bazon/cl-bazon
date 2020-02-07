@@ -2,22 +2,25 @@
 
 (in-package #:ru.bazon.cl-bazon)
 
-(defun exec/sync (command &key input output)
-  (let ((input (cond
-                 ((stringp input) (make-string-input-stream input))
-                 ((null input) (make-string-input-stream ""))
-                 (t input)))
-        (string-output? (null output))
-        (output (cond
-                  ((null output) (make-string-output-stream))
-                  (t output))))
+(defun exec/sync (command &key input output err-output)
+  (let* ((input (cond
+                  ((stringp input) (make-string-input-stream input))
+                  ((null input) (make-string-input-stream ""))
+                  (t input)))
+         (local-output (make-string-output-stream))
+         (output (cond
+                   ((null output) local-output)
+                   (t output)))
+         (err-output (cond
+                       ((null err-output) local-output)
+                       (t err-output))))
     (let* ((process (uiop:launch-program
                      command
                      :input input
                      :output output
-                     :error-output output))
+                     :error-output err-output))
            (exit-code (uiop:wait-process process)))
-      (values (when string-output? (get-output-stream-string output)) exit-code))))
+      (values (get-output-stream-string local-output) exit-code))))
 
 (defun exit (&optional code)
   #+allegro (excl:exit code)
